@@ -1,30 +1,28 @@
 # [Outcome-phrased title, not feature-named — e.g. "Merchandisers update the seasonal catalog 50% faster — launch plan"]
 
+<!-- Cite-provenance pattern per Mehta / Doshi / Cagan — every PRD opens by naming its evidence base. -->
+
 > **v0.1 — [YYYY-MM-DD]**
 > Launch target date: [YYYY-MM-DD]
 > Data: [What this PRD is grounded in, fetched when, from where. E.g. "Warehouse views as of 2026-05-13. Customer evidence: 6 interviews across Mar–May 2026. Build status: feature-complete in staging as of 2026-05-12; QA pass 2 of 3 complete."]
 > Changelog: First draft.
 
 <!--
-Launch PRD — building is underway or done. 2,000–4,000 words.
-Core question this doc answers: "How does this land in the market?"
+Launch PRD — Reforge's 10-component product spec extended with Aakash Gupta's launch-blog-post layer. 2,000–4,000 words.
+Core question this doc answers: "How does this land in market?"
 Reader: GTM, support, marketing, plus the engineering and design teams who built it. Decision it unblocks: launch can ship.
-
-If this PRD will serve multiple cross-functional audiences (which is the default case for a Launch PRD), expand into the three-act spine:
-  - Program — architecture, cadence, branching, eligibility logic
-  - Content — copy, UX detail, module-level specification, all customer-facing strings
-  - Data — instrumentation, attributes, events, schema, what we measure
-The three-act spine lets the marketer read Section 1, the copywriter read Section 2, the engineer read Section 3, without anyone re-reading.
+Aakash Gupta's frame — "the modern PRD reads like a blog post but contains all the information of the old Word document". Per-team checklists below are the GTM-facing layer that converts the spec into a launch plan.
 -->
 
 ## TL;DR
 
-[Three lines. What we're shipping / who it's for / how we'll know it worked. Bold the launch date.]
+[Four lines. What we're shipping / who it's for / when / how we'll know it worked. Bold the launch date. Include the launch headline — the one-sentence customer-facing pitch a marketer or salesperson would repeat verbatim.]
 
 [Example shape:
 - **What:** Inline bulk-edit for product attributes on the seasonal catalog grid.
 - **Who:** Pro and Enterprise plan merchandisers at mid-market e-commerce brands managing 5,000–50,000 SKUs.
 - **When:** **Launching 2026-07-15** to 100% of Pro/Enterprise, with rollback criteria defined below.
+- **Launch headline:** "Update 500 SKUs in 90 seconds — bulk-edit lands in the catalog grid 15 July."
 - **Success:** Time-to-update p50 under 90s by launch + 30 days; weekly catalog-update completion up 4+ points by launch + 60 days.]
 
 ## Problem
@@ -33,19 +31,37 @@ The three-act spine lets the marketer read Section 1, the copywriter read Sectio
 
 [Example: "Merchandisers at mid-market e-commerce brands lose 6–12 minutes per session switching between the product editor and a spreadsheet to bulk-update seasonal attributes — flagged in 4 of 6 Mar–May 2026 customer interviews. Warehouse `product_attribute_updated` p50 = 4m 18s vs the 30s workflow-spec target. Support tickets tagged `bulk-edit-friction` ran 42 in Q1, up from 18 in Q4."]
 
+> guidance: Lenny's first rule — nail the problem statement. If you wrote "by adding", "via a new", or "we will build" in this section, that's solution masquerading as problem (failure mode 1). Rewrite to "[Segment] cannot [task] because [reason], which costs [evidence]."
+
 ## Target user
 
-[One paragraph. Specific segment, sized.]
+[One paragraph. Specific segment, sized. Named role, named context.]
 
 [Example: "Merchandisers at mid-market e-commerce brands with 5,000–50,000 SKUs. ~340 organisations on the Pro plan match this profile, ~62% of Pro-plan MRR."]
 
 ## Why now
 
-[One paragraph. Strategic fit + market timing + why this quarter.]
+[One paragraph. Strategic fit + market timing + why this quarter. Cagan's opportunity-assessment element.]
+
+## Success metrics
+
+[Table. Baseline + target + dashboard + owner per metric. Include launch + 7d / launch + 30d / launch + 90d columns.]
+
+| Metric | Baseline | Launch + 7d | Launch + 30d | Launch + 90d | Dashboard | Owner |
+|---|---|---|---|---|---|---|
+| Median time-to-update | 4m 18s | <3m | <90s | <60s | Warehouse `merchandiser-workflow-health` | RevOps |
+| Weekly catalog-update completion (Pro) | 32% | no regression | 34%+ | 38%+ | Warehouse `pro-catalog-funnel` | RevOps |
+| Support tickets `bulk-edit-friction` | 42 / quarter | flat | <30 (annualised) | <20 (annualised) | CRM ticket dashboard | Support |
+| Feature adoption (% of Pro orgs using ≥1x/week) | not tracked | establish | 60% | 80% | Warehouse `feature-adoption-merchandiser` | Product |
+| Merchandiser NPS | not tracked | n/a | establish baseline | +10pt | Sprig `merchandiser-nps` | Product |
+
+> guidance: Doshi — "include the dashboard view". Launch metrics need a time window per row: + 7d is the "did we break anything" check; + 30d is the early adoption read; + 90d is the real lift. Baseline can be "not tracked" — name it honestly.
 
 ## Solution overview
 
-[2–3 paragraphs. The WHAT, not the HOW. User-facing behaviour. Link to prototype: `[Figma — Inline bulk-edit v4](https://...)`.]
+[2–3 paragraphs. The WHAT, not the HOW. User-facing behaviour, moments of value, what changes for the operator. Link to prototype: `[Figma — Inline bulk-edit v4](https://...)`.]
+
+> guidance: Cagan's first rule — "the *what*, not the *how*". Mehta's preference — a working prototype linked from the doc beats prose for the visual.
 
 ## Key user flows
 
@@ -55,50 +71,30 @@ The three-act spine lets the marketer read Section 1, the copywriter read Sectio
 2. [Step.]
 3. [Step.]
 
-## Success metrics
+## Scope + non-goals
 
-[Table. Baseline + target + dashboard + owner per metric. Include launch + 7 day, launch + 30 day, launch + 90 day thresholds.]
+[Two halves: in-scope items, then non-goals. Lenny + Kevin Yien: non-goals are as load-bearing as the goals.]
 
-| Metric | Baseline | Launch + 7d target | Launch + 30d target | Launch + 90d target | Dashboard | Owner |
-|---|---|---|---|---|---|---|
-| Median time-to-update | 4m 18s | <3m | <90s | <60s | Warehouse `merchandiser-workflow-health` | RevOps |
-| Weekly catalog-update completion (Pro) | 32% | no regression | 34%+ | 38%+ | Warehouse `pro-catalog-funnel` | RevOps |
-| Support tickets `bulk-edit-friction` | 42 / quarter | flat | <30 (annualised) | <20 (annualised) | CRM ticket dashboard | Support |
-| Feature adoption (% of Pro orgs using ≥1x/week) | not tracked | establish | 60% | 80% | Warehouse `feature-adoption-merchandiser` | Product |
-| Merchandiser NPS | not tracked | n/a | establish baseline | +10pt | Sprig `merchandiser-nps` | Product |
-
-> guidance: launch metrics need a time window per row. Launch + 7d is the "did we break anything" check; + 30d is the early adoption read; + 90d is the real lift. Baseline can be "not tracked" — name it honestly.
-
-## In scope
-
+**In scope**
 - [Item.]
 - [Item.]
 - [Item.]
 
-## Out of scope (non-goals)
-
-[Minimum 3 items.]
-
+**Non-goals** *(minimum 3)*
 - [Non-goal.]
 - [Non-goal.]
 - [Non-goal.]
 
-## Things NOT used by this launch
-
-[Optional but recommended for launch PRDs. Pre-empts the "why didn't you use X?" question about specific systems, events, or surfaces.]
-
-- [System / event / surface NOT used — and why. E.g. "In-app messaging — not used. Merchandiser flow is grid-native; in-app would require a separate SDK plumbing job and Pro merchandisers don't have the messaging surface open during catalog work."]
-- [System / event / surface NOT used — and why.]
-
-## Rabbit holes
-
+**Rabbit holes** *(Shape Up — obvious-but-wrong adjacent work the team might wander into.)*
 - **[Rabbit hole 1]** — Tempting. Don't. [Reason.]
 - **[Rabbit hole 2]** — Tempting. Don't. [Reason.]
 - **[Rabbit hole 3]** — Tempting. Don't. [Reason.]
 
-## Dependencies + decisions required before launch
+> guidance: fewer than three non-goals is failure mode 3. Rabbit holes concentrate editorial judgment in one place — the adjacent work that sounds good in a planning room and burns the launch.
 
-[NEED / PROCEED-WITHOUT decision table. Every item resolves as one of two outcomes. No "TBD" rows.]
+## Dependencies + decisions
+
+[NEED / PROCEED-WITHOUT decision table. Doshi + Cagan: force every dependency to a binary outcome — no TBDs.]
 
 | ID | Item | Decision | Owner | Deadline | Reason / Cost |
 |---|---|---|---|---|---|
@@ -108,7 +104,17 @@ The three-act spine lets the marketer read Section 1, the copywriter read Sectio
 | D4 | Support runbook entry in help centre | NEED | Support Lead | 2026-07-08 | Without it, Tier 1 escalates everything to product. Capacity bottleneck on launch week. |
 | D5 | Marketing changelog entry on example.com | NEED | Marketing Lead | launch day | Customer-facing comms requirement; ship-blocker for external announcement. |
 
-> guidance: this table is non-negotiable for a Launch PRD. Every dependency resolves NEED or PROCEED-WITHOUT. If you don't know, the row stays NEED with owner = "<who to ask>" and deadline = "before launch decision".
+> guidance: no "TBD" rows. If the answer isn't known, the row stays NEED with owner = "<who to ask>" and deadline = "before launch decision".
+
+## Risks + mitigations
+
+[Minimum 3 named risks with explicit mitigations. Cutler's "risks to mitigate"; Doshi's pre-mortem.]
+
+- **Risk 1 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
+- **Risk 2 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
+- **Risk 3 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
+
+> guidance: name the tradeoff explicitly — what gets worse, who's unhappy, what we're betting against. A risks section that reads like sales material is failure mode 9.
 
 ## Launch checklist
 
@@ -172,7 +178,7 @@ The three-act spine lets the marketer read Section 1, the copywriter read Sectio
 
 ## Support enablement
 
-[Plain-language FAQ for the support team. What is this feature, who's it for, what to escalate, where the runbook is. The skill defaults to writing this section as if a Tier 1 support agent will read it cold.]
+[Plain-language FAQ for the support team. What this feature is, who's it for, what to escalate, where the runbook is. Write it as if a Tier 1 agent will read it cold.]
 
 **What is it?**
 [Two sentences. E.g. "A new way for merchandisers to bulk-edit product attributes directly in the catalog grid, instead of exporting to a spreadsheet. It applies edits across selected rows in a single transaction."]
@@ -215,12 +221,6 @@ The three-act spine lets the marketer read Section 1, the copywriter read Sectio
 | Support tickets tagged `bulk-edit-friction` | [Name] | Daily for first 14d | > 5 tickets / day |
 | Launch email delivery + open | [Name] | Daily for first 3d | Delivery < 95% or open < 25% |
 
-## Risks + mitigations
-
-- **Risk 1 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
-- **Risk 2 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
-- **Risk 3 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
-
 ## Phase 2 candidates
 
 [Explicit "this is what comes next if launch succeeds". Not a commitment — a candidate list with conditional triggers.]
@@ -230,6 +230,8 @@ The three-act spine lets the marketer read Section 1, the copywriter read Sectio
 - [Candidate — trigger condition.]
 
 ## Open questions
+
+[Numbered. Owner-tagged. Recommendation where you have one.]
 
 1. [Question — owner — recommendation.]
 2. [Question — owner — recommendation.]
@@ -251,4 +253,4 @@ The three-act spine lets the marketer read Section 1, the copywriter read Sectio
 
 ---
 
-*Author: [Name]. Owner: [Name]. Last updated: [YYYY-MM-DD]. Source data: [Warehouse view / interview set / analytics query, with date]. Section owner: [team].*
+*Author: [Name]. Owner: [Name]. Last updated: [YYYY-MM-DD]. Source data: [Warehouse view / interview set / analytics query, with date].*

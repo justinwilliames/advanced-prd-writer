@@ -1,6 +1,6 @@
 # Voice and Clarity Rules — Deep Reference
 
-This is the long-form reference for the "Voice rules" section of SKILL.md. Fourteen rules, each with a one-paragraph rationale and 2–3 worked before/after pairs. At the bottom: an AU-English spelling reference and a 100-word worked rewrite that applies all fourteen rules.
+This is the long-form reference for the "Voice rules" section of SKILL.md. Fourteen rules, each with a one-paragraph rationale and 2–3 worked before/after pairs. At the bottom: an English convention reference (AU/UK vs US) and a 100-word worked rewrite that applies all fourteen rules.
 
 These rules are not stylistic preferences. Across the eight PM authorities surveyed for `references/pm-best-practices.md`, every one names voice and clarity as the difference between a PRD that gets read and one that does not. Apply them on every shape, every section, every draft.
 
@@ -252,11 +252,22 @@ The table form:
 
 ---
 
-## 12. Match the audience's English
+## 12. Match the user's English convention
 
-**The rule.** Default to the spelling convention the user already uses. If unclear, ask once at the top of the first draft and lock it for the document.
+**The rule.** Match whatever English convention the user's input is already in — AU/UK or US. Mirror; do not impose. Neither convention is the skill's "default". If the input is genuinely mixed or too short to detect from, ask once before drafting and lock the choice for the document.
 
-**Why.** Spelling inconsistency reads as carelessness. A PRD with both "behaviour" and "behavior" in the same doc looks like it was written by two people. The skill defaults to AU-English when the user signal is AU and to US-English when the user signal is US. The "AU-English spelling reference" section below names the swap pairs.
+**Why.** Spelling inconsistency reads as carelessness. A PRD with both "behaviour" and "behavior" in the same doc looks like it was written by two people. Imposing a convention the user doesn't write in is the same kind of carelessness, one step earlier — the doc reads as foreign before the reader hits the first claim. The "English convention reference — AU/UK vs US" section below names the swap pairs, and the detection signal below it names how the skill picks.
+
+**Detection signal.** Scan the first 2–3 distinctive words in the user's input. Distinctive = words that differ between conventions (the "-ise/-ize", "-our/-or", "-re/-er", "-ce/-se" families).
+
+- "behaviour" + "organisation" → AU/UK.
+- "behavior" + "organization" → US.
+- "centre" + "colour" → AU/UK.
+- "center" + "color" → US.
+- "optimise" + "analyse" → AU/UK.
+- "optimize" + "analyze" → US.
+
+If the input is too short to contain a distinctive word, or it mixes both conventions, ask one question before drafting: *"Quick check before I draft — AU/UK spelling (behaviour, organisation, centre) or US (behavior, organization, center)?"* Lock the answer.
 
 **Before / after.**
 
@@ -308,9 +319,9 @@ The table form:
 
 ---
 
-# AU-English spelling reference
+# English convention reference — AU/UK vs US
 
-When the user signal is AU, use the left column. When the user signal is US, use the right column. Pick one per document and lock it. The skill defaults to AU unless the user's input clearly signals US.
+A swap table the skill uses to **stay consistent** with whatever convention the user's input is already in. AU/UK is the left column; US is the right column. Neither is the skill's default — the detection signal in Rule 12 picks. Once a convention is locked for a document, every word in this table follows it.
 
 | AU | US |
 |---|---|
@@ -350,15 +361,15 @@ When the user signal is AU, use the left column. When the user signal is US, use
 | amongst | among |
 | whilst | while |
 
-Note on "program" — AU keeps "programme" for TV shows, training schemes, and broadcast contexts, but uses "program" for software. The skill defaults to "program" in PRD contexts (software discussions) when AU.
+Note on "program" — AU/UK keeps "programme" for TV shows, training schemes, and broadcast contexts, but uses "program" for software. When the locked convention is AU/UK and the PRD is discussing software, use "program". Use "programme" only if the doc is genuinely about a training programme, broadcast programme, or similar non-software sense.
 
 ---
 
 # Worked example — bad PRD paragraph rewritten
 
-Take a 100-word paragraph that violates almost every rule above. Then rewrite it applying all fourteen.
+Take a 100-word paragraph that violates almost every rule above. Then rewrite it applying all fourteen. The user's input in this example is in AU/UK convention — the skill detects that from "optimise" and "behaviour" elsewhere in the brief, locks AU/UK, and the "optimize" appearing in the bad draft is therefore a Rule 12 violation. The same example in a US-locked doc would flip the spelling decisions; everything else is convention-agnostic.
 
-**Before — 102 words, AU context. Every rule violated.**
+**Before — 102 words. Locked convention: AU/UK. Every rule violated.**
 
 > It seems that, generally speaking, the new onboarding flow could potentially help to improve activation rates among users, where applicable, and the team should consider whether perhaps it might be appropriate to optimize the experience by adding a new modal that highlights key features. Users have indicated through various channels that they find onboarding to be confusing 😕, and we believe that addressing this issue, possibly through a series of UX changes, may help to drive better outcomes overall. We will look into the data and report back on findings 📊 in due course, hopefully sometime in the near future.
 
@@ -374,7 +385,7 @@ Violations counted:
 8. No tradeoff named (rule 8).
 9. No headers, no skim path (rule 9).
 10. No typographical shorthand here, but emoji used in body (rule 11).
-11. Mixed spelling — "optimize" in an AU context (rule 12).
+11. Wrong convention — "optimize" in an AU/UK-locked doc (rule 12).
 12. No version / date / data callout (rule 13).
 13. No NEED / PROCEED decision on the "data and report back" (rule 14).
 
