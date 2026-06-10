@@ -52,7 +52,11 @@ Reader: engineering, design, QA. Decision it unblocks: build can start.
 | Support tickets tagged `pipeline-friction` | 42 / quarter | <20 / quarter | Q3 2026 | CRM ticket dashboard | Support |
 | Rep NPS (in-app survey) | not tracked | establish baseline + 10pt lift | 12 weeks post-launch | Sprig dashboard `rep-nps` | Product |
 
-> guidance: Doshi specifically calls out the dashboard view — "most PRDs don't cover what the dashboard will look like". Every row needs all five columns. "Improve", "better", "increase" without a number, baseline, or dashboard is unmeasurable success (failure mode 2). If a baseline is genuinely unknown, write "not tracked" — that surfaces the instrumentation work honestly.
+> guidance: Doshi specifically calls out the dashboard view — "most PRDs don't cover what the dashboard will look like". Every row needs all five columns. "Improve", "better", "increase" without a number, baseline, or dashboard is unmeasurable success (failure mode 2). If a baseline is genuinely unknown, write "not tracked" — that surfaces the instrumentation work honestly. Every metric also names the event or source that produces it; a "not tracked" baseline adds a matching NEED row to Dependencies for the instrumentation work — a metric nobody instruments is failure mode 2 wearing a table.
+
+**Measurement design** *(decided now, not post-hoc — how the effect will be isolated)*
+
+- [Holdout / control: e.g. "5% holdout via no-send branch; activation rate (event `X` within 14d) read at 30 days, holdout vs treated." If deliberately no holdout: name the reason and the fallback read — "pre/post on dashboard Y; seasonality caveat: Q4 uplift overlaps the read window."]
 
 ## Solution overview
 
@@ -96,7 +100,7 @@ Reader: engineering, design, QA. Decision it unblocks: build can start.
 - **[Rabbit hole 2]** — Tempting. Don't. [Reason.]
 - **[Rabbit hole 3]** — Tempting. Don't. [Reason.]
 
-> guidance: fewer than three non-goals is failure mode 3. Lenny names this as one of the highest-leverage sections in the whole doc.
+> guidance: fewer than three non-goals is failure mode 3. Lenny names this as one of the highest-leverage sections in the whole doc. Tag each exclusion: **constraint** (a gap that could unblock later — name what unlocks it) or **decision** (deliberate and stable — name the owner). Bare exclusions teach the next reader nothing.
 
 ## Dependencies + decisions required
 
@@ -112,13 +116,13 @@ Reader: engineering, design, QA. Decision it unblocks: build can start.
 
 ## Risks + mitigations
 
-[Minimum 3 named risks with explicit mitigations. Cutler: "risks to mitigate". Doshi: pre-mortem framing — what kills this?]
+[Minimum 3 named risks with explicit mitigations, ranked by likelihood × impact — pre-mortem framing: what kills this? Cutler: "risks to mitigate". Each mitigation names a threshold, the signal you'll watch, and the response.]
 
 - **Risk 1 — [Name].** [Why it matters.] **Mitigation:** [What we'll do to prevent or contain it.] [Example: "Dialer webhook delivery is occasionally delayed >30s under load — would break the auto-fill UX. Mitigation: add a 60s polling fallback on the deal-row view; surface a `Sync now` button if no event has landed within 90s."]
 - **Risk 2 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
 - **Risk 3 — [Name].** [Why it matters.] **Mitigation:** [What we'll do.]
 
-> guidance: name the tradeoff explicitly — what gets worse, who's unhappy, what we're betting against. A risks section that reads like sales material is failure mode 9.
+> guidance: name the tradeoff explicitly — what gets worse, who's unhappy, what we're betting against. A risks section that reads like sales material is failure mode 9. A mitigation without a threshold + signal + response ("monitor closely") is decoration — write "if unsubscribe > 0.8% in week 1, collapse to a single send per module".
 
 ## Open questions
 

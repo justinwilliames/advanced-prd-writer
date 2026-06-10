@@ -176,7 +176,7 @@ The skill states its pick before drafting — *"Reading this as a Discovery brie
 
 ## What this skill does not do
 
-- It does not produce marketing copy, support docs, or customer-facing prose. Different voice.
+- It does not produce marketing copy, support docs, or customer-facing prose. Different voice. Lifecycle-program PRDs hand message copy to a companion build-spec document and link it — the PRD never embeds copy.
 - It does not write engineering code. Hand off after the PRD is signed.
 - It does not auto-fix the failure modes it detects. It surfaces and lets you decide.
 - It does not auto-apply edits in critique mode. The audit is delivered; edits land only on explicit confirmation.
@@ -253,5 +253,6 @@ Maintained by Justin Williames. License: MIT.
 
 ## Changelog
 
+- **v1.2** — Lifecycle/CRM program depth pack (SKILL.md Step 4.5): data points in platform attribute language, conversion-event mapping per metric, measurement/holdout design locked before build, negative scope with per-item reasons, numeric phase gates, and message copy handed off to a companion build-spec document. Critique mode stops penalising org-standard section spines that carry the must-haves, and audits depth-pack items on program PRDs. Must-haves #4 and #7 deepened (instrumentation mapping; threshold/signal/response mitigations).
 - **v1.1** — Critique mode added. Three-act Program/Content/Data spine removed. Re-grounded explicitly in published authorities — every must-have, failure mode, and cross-cutting pattern now cites its source. AU-English imposition dropped — the skill now matches the user's input English convention rather than defaulting to one.
 - **v1.0** — Initial release. Seven shapes, eight must-haves, ten failure modes.

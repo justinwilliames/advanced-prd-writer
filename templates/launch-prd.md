@@ -176,6 +176,8 @@ Aakash Gupta's frame — "the modern PRD reads like a blog post but contains all
 | External — press (if applicable) | [Outlet / blog] | [Name] | [Date] | [ ] |
 | External — social | LinkedIn (founder), X (company) | [Name] | Launch day + 1 | [ ] |
 
+> guidance: every external customer-facing row links a build-executable copy spec as a companion document — final subject, preheader, body copy, and CTAs under a dedicated build-spec contract (if the workspace has an email build-spec skill, e.g. `stripo-email-build-spec` for Stripo/Braze shops, use it). The PRD never embeds message copy and never ships a "copy TBD" row. Internal comms (Slack, enablement) can stay as checklist items.
+
 ## Support enablement
 
 [Plain-language FAQ for the support team. What this feature is, who's it for, what to escalate, where the runbook is. Write it as if a Tier 1 agent will read it cold.]
@@ -223,7 +225,7 @@ Aakash Gupta's frame — "the modern PRD reads like a blog post but contains all
 
 ## Phase 2 candidates
 
-[Explicit "this is what comes next if launch succeeds". Not a commitment — a candidate list with conditional triggers.]
+[Explicit "this is what comes next if launch succeeds". Not a commitment — a candidate list with conditional triggers. If the launch itself is phased, Phase N+1 is gated behind named numeric criteria on Phase N (e.g. "Phase 2 unlocks after: open rate > 50%, unsubscribe < 0.5%, zero deliverability incidents in 7 days") — "we'll see how it goes" is not a gate.]
 
 - [Candidate — trigger condition. E.g. "Variant-level bulk-edit — triggered if Pro adoption hits 60%+ at launch + 30d."]
 - [Candidate — trigger condition.]

@@ -73,10 +73,10 @@ No matter the shape, the draft must address all eight. Each must-have is cited t
 1. **Problem statement with evidence** — Lenny: *"nailing the problem statement is the single most important step"*. Amazon: *"start with the customer and work backwards"*.
 2. **Target user / customer segment** — Amazon's PR-FAQ heading is literally *"for [segment]"*.
 3. **Why now / opportunity** — Cagan's opportunity assessment requires this explicitly.
-4. **Success metrics** — measurable, with baseline, target, time window, and the dashboard view. Doshi: *"most PRDs don't cover what the dashboard will look like"*.
+4. **Success metrics** — measurable, with baseline, target, time window, and the dashboard view. Doshi: *"most PRDs don't cover what the dashboard will look like"*. Every metric also maps to the named event or source that produces it — a metric with no instrumentation becomes a NEED row in the dependency table, not a hope.
 5. **Solution overview — the what, not the how** — Cagan's first rule.
 6. **Non-goals / out of scope** — Lenny + Kevin Yien at Square: *"as important as the goals"*. Shape Up calls this "Rabbit holes".
-7. **Risks, assumptions, open questions** — Cutler's *"risks to mitigate"*. Amazon's internal FAQ. Doshi's pre-mortem.
+7. **Risks, assumptions, open questions** — Cutler's *"risks to mitigate"*. Amazon's internal FAQ. Doshi's pre-mortem: rank scenarios by likelihood × impact, and give each mitigation a threshold, a signal, and a response — "monitor closely" is not a mitigation.
 8. **Owner, collaborators, timeline** — operational glue. Lenny names it explicitly.
 
 If the user pushes back on any of these (*"we don't need metrics yet"*), push back yourself with the cited authority. Document why it is being deferred and to when — don't silently drop it.
@@ -103,6 +103,18 @@ These two patterns are applications of published principle, not the author's inv
 ```
 
 No "to be determined" rows. If the answer isn't known, the row stays NEED with owner = *"<who to ask>"* and deadline = *"before launch decision"*.
+
+### Step 4.5 — Conditional depth pack: lifecycle / CRM program PRDs
+
+Fires when the PRD's subject is a lifecycle or CRM messaging program — an activation/onboarding journey, an email/SMS/push sequence, a winback, nurture, or re-engagement program. Skip it for product-feature PRDs.
+
+Program PRDs carry a higher completion bar because the doc drives a build inside a marketing platform (Braze, Iterable, Klaviyo) where a vague spec fails silently at send time. Each item below is an existing principle applied at program fidelity, not new canon:
+
+1. **Data points in platform attribute language** *(Mehta: vague specs produce messy codebases; Doshi: the dashboard view).* Plain-English gates ("when the user hasn't connected a calendar") are not buildable — write `hasConnectedCalendar = false`, `T+24h after entry`. Required: entry trigger (canonical event, idempotency rule, timing); a gate map table (program step / gate attribute / data source / known gap / decision); personalisation tokens with source + fallback; a conversion-events table (event, default vs custom, what behaviour it proves); suppression + frequency rules; sync-lag tolerances and data edge cases — each resolved NEED or PROCEED WITHOUT.
+2. **Measurement design locked before build** *(failure mode #2 applied forward; Reforge experiment discipline).* Holdout percentage, mechanism (e.g. a no-send branch), measurement window, and the single metric it reads against. Deliberately no holdout? Name the rationale and the fallback read (pre/post + its caveats). Post-hoc measurement design is unmeasurable success on a delay.
+3. **Negative scope, two lists, a reason per item** *(must-have #6 at program fidelity; Shape Up's rabbit holes).* "What's NOT in the program" and "data/attributes NOT used by this program". Tag every exclusion **data gap** (fixable — name what unlocks it) or **deliberate decision** (stable — name who made it). Bare exclusions teach the next iteration nothing.
+4. **Phase gating with numeric criteria** *(the launch template's rollback-criteria pattern, applied to ramp-up).* Phase N+1 is blocked behind named thresholds on Phase N — "Welcome open rate > 50%, unsubscribe < 0.5%, zero deliverability incidents in 7 days". "We'll see how it goes" is not a gate.
+5. **Message copy ships as a companion build spec — never inline, never TBD.** The PRD stays strategy + measurement. Subject lines, preheaders, body copy, and CTAs live in a separate child document under a dedicated build-spec contract — if the workspace has an email build-spec skill (e.g. `stripo-email-build-spec` for Stripo/Braze shops), invoke it for that document. The PRD carries a short pointer section linking the spec. Completion bar for the pair: PRD strategy-complete, spec build-executable with zero placeholders. A PRD that embeds half-drafted copy or says "copy TBD" fails both documents at once.
 
 ### Step 5 — Draft
 
@@ -163,7 +175,8 @@ Run all four passes. Capture findings as you go.
 - Mixed English conventions in one doc
 
 **Audit 4 — Best-practice gap audit.** This is the audit that calls out drift from published canon. Patterns the skill is willing to flag:
-- **Idiosyncratic section structures** — if the doc uses a section spine no published authority advocates (Program / Content / Data three-acts, or any other house-specific shape), flag it: *"This spine is not in Lenny's, Cagan's, Amazon's, or Reforge's templates. Consider whether the same content fits a published shape — Lenny's flat structure or Reforge's 10 components — for easier reader handoff."*
+- **Idiosyncratic section structures** — if the doc uses a section spine no published authority advocates AND it is not the team's standardised house format, flag it: *"This spine is not in Lenny's, Cagan's, Amazon's, or Reforge's templates. Consider whether the same content fits a published shape — Lenny's flat structure or Reforge's 10 components — for easier reader handoff."* If the spine IS an org standard (e.g. a Program / Content / Data three-act used consistently across a team's lifecycle docs), audit the content against the eight must-haves and the Step 4.5 depth pack instead of penalising the spine — structure is convention; completeness is canon.
+- **Lifecycle-program PRDs missing the depth pack** — gates written in plain English instead of platform attribute language, no conversion-events table, no holdout/measurement design, negative scope without per-item reasons, message copy inline or "copy TBD" instead of a linked companion build spec. Flag each as a major; the contract is Step 4.5.
 - **Length over 3,000 words for non-launch scope** — Reforge: *"product specs are typically 2–3 pages"*. Doshi: most PRD time is *"Overhead disguised as Leverage"*. Flag and suggest splitting.
 - **"What's NOT used" or "Rabbit holes" sections missing** — Shape Up + Lenny + Square's Yien all say non-goals are as important as goals. Flag if absent.
 - **No press-release framing where the win is customer-facing** — Amazon: write the press release first. If the doc is product-launch-shaped and the customer-facing win is buried below the fold, recommend either re-leading with the value statement or producing a separate PR-FAQ.
@@ -238,7 +251,7 @@ These are derived from the universal positions Doshi, Cutler, Norton, Mehta, Ama
 
 ## What this skill does not do
 
-- It does not produce marketing copy, support docs, or customer-facing prose.
+- It does not produce marketing copy, support docs, or customer-facing prose. For lifecycle-program PRDs, message copy ships as a companion build-spec document under its own contract (Step 4.5, item 5) — the PRD links it, never embeds it.
 - It does not write engineering code. Hand off after the PRD is signed.
 - It does not auto-fix findings in critique mode. It surfaces and lets the user decide.
 - It does not pad. Length is failure mode #8.
@@ -263,4 +276,4 @@ These are derived from the universal positions Doshi, Cutler, Norton, Mehta, Ama
 
 ---
 
-*Skill version 1.1. Canon: Marty Cagan (SVPG), Lenny Rachitsky, Shreyas Doshi, Amazon Working Backwards, John Cutler, Ravi Mehta, Reforge, Aakash Gupta. Maintainer: Justin Williames.*
+*Skill version 1.2. Canon: Marty Cagan (SVPG), Lenny Rachitsky, Shreyas Doshi, Amazon Working Backwards, John Cutler, Ravi Mehta, Reforge, Aakash Gupta. Maintainer: Justin Williames.*
