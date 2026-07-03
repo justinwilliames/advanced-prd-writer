@@ -1,3 +1,5 @@
+> **⚠️ Moved (2026-07-03):** now maintained in [justinwilliames/skills](https://github.com/justinwilliames/skills) — this repo is archived.
+
 # advanced-prd-writer
 
 A Claude Code skill for writing **and critiquing** product requirements documents — grounded in published PM best practice, adaptive to the maturity of the work, opinionated about structure, and actively defensive against the ten failure modes that quietly kill most PRDs.
