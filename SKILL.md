@@ -81,9 +81,9 @@ No matter the shape, the draft must address all eight. Each must-have is cited t
 
 If the user pushes back on any of these (*"we don't need metrics yet"*), push back yourself with the cited authority. Document why it is being deferred and to when — don't silently drop it.
 
-### Step 4 — Apply two cross-shape patterns from published practice
+### Step 4 — Apply three cross-shape patterns from published practice
 
-These two patterns are applications of published principle, not the author's invention. Apply them on any shape where they fit:
+These patterns are applications of published principle, not the author's invention. Apply them on any shape where they fit:
 
 **A. Cite evidence inline + provenance callout.** Every draft opens with a callout naming version, date, and what data this is grounded in. Cagan, Mehta, and Doshi all argue that PRDs without provenance produce *"vague specs that produce messy codebases"* (Mehta). If the doc has no data yet, state that explicitly:
 
@@ -103,6 +103,30 @@ These two patterns are applications of published principle, not the author's inv
 ```
 
 No "to be determined" rows. If the answer isn't known, the row stays NEED with owner = *"<who to ask>"* and deadline = *"before launch decision"*.
+
+**C. Carry an LLM Context block — the PRD's durable working memory.** A house convention, not published canon, but grounded in the same principle Cutler and Doshi name: *"operating assumptions should be explicit"* and *"writing down our thinking enables consensus."* Any PRD that will be **re-edited over time — especially with AI assistance** — carries a dedicated **LLM Context** block. It is the doc's memory of the decisions, conventions, and gotchas that explain the body but don't belong in it: *why* a choice was made, what convention every variant must honour, what trap a future editor will hit. Without it, every editing session (human or model) re-litigates settled calls and re-discovers the same gaps. The block is read before editing and appended after any decision. It is explicitly **not product scope** — it never substitutes for the body's must-haves.
+
+Place it as a **collapsed toggle pinned near the top** in Notion (high recall, zero visual weight); in flat-markdown targets put it immediately after the TL;DR so the lead answer still comes first (voice rule 1). Four standing sub-sections:
+
+```markdown
+## LLM Context — working memory (not part of the spec)
+
+> Maintained for AI assistants and human editors as this PRD's durable memory. Read before editing; append whenever a decision, convention, or constraint is set. Keep entries dated and terse. Not product scope.
+
+**Locked decisions** *(newest first; don't silently reverse — log the reversal here)*
+- `[YYYY-MM-DD]` — [decision + one-line why].
+
+**Standing conventions** *(rules every section / variant must honour)*
+- [e.g. "All variants ship a Free and a Paid version." / "Every send carries the app-download footer."]
+
+**Known gaps & gotchas** *(traps a future editor or build will hit)*
+- [e.g. "Source API doesn't expose X — verify in the dashboard before relying on it."]
+
+**Open threads** *(parked, not yet decided — promote into the body once resolved)*
+- [ ] [question — owner].
+```
+
+Lightweight, short-lived shapes (discovery brief, experiment brief) may omit it — they're rarely re-edited. Every long-lived shape (standard PRD, launch PRD, technical RFC, PR-FAQ, opportunity assessment) includes it by default.
 
 ### Step 4.5 — Conditional depth pack: lifecycle / CRM program PRDs
 
@@ -181,6 +205,7 @@ Run all four passes. Capture findings as you go.
 - **"What's NOT used" or "Rabbit holes" sections missing** — Shape Up + Lenny + Square's Yien all say non-goals are as important as goals. Flag if absent.
 - **No press-release framing where the win is customer-facing** — Amazon: write the press release first. If the doc is product-launch-shaped and the customer-facing win is buried below the fold, recommend either re-leading with the value statement or producing a separate PR-FAQ.
 - **Implicit assumptions** — Cutler: *"operating assumptions"* should be explicit. Doshi: pre-mortem. If you can identify an assumption the author is making that the doc does not state, surface it.
+- **No LLM Context block on a long-lived / AI-maintained PRD** — if the doc is a standard PRD, launch PRD, technical RFC, PR-FAQ, or opportunity assessment that will be re-edited over time and it has no working-memory block (locked decisions / standing conventions / known gaps / open threads per Step 4.C), flag it as a minor: *"No LLM Context block — every future edit re-litigates settled decisions and re-discovers the same gaps. Add a pinned working-memory block (Step 4.C)."* Don't flag it on a one-shot discovery or experiment brief.
 
 ### Step C3 — Reconcile and prioritise
 
@@ -276,4 +301,10 @@ These are derived from the universal positions Doshi, Cutler, Norton, Mehta, Ama
 
 ---
 
-*Skill version 1.2. Canon: Marty Cagan (SVPG), Lenny Rachitsky, Shreyas Doshi, Amazon Working Backwards, John Cutler, Ravi Mehta, Reforge, Aakash Gupta. Maintainer: Justin Williames.*
+If the user cannot supply required evidence (customer data, baseline metric), block and ask — do not fabricate inputs.
+
+*Skill version 1.3. Canon: Marty Cagan (SVPG), Lenny Rachitsky, Shreyas Doshi, Amazon Working Backwards, John Cutler, Ravi Mehta, Reforge, Aakash Gupta. Maintainer: Justin Williames. v1.3 adds the LLM Context working-memory block (Step 4.C) to every long-lived shape.*
+
+---
+
+Sync home: ~/code/advanced-prd-writer (public twin); edit private first, push to sync.

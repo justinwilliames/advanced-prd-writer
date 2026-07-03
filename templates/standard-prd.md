@@ -21,6 +21,24 @@ Reader: engineering, design, QA. Decision it unblocks: build can start.
 - **Solution:** Inline deal-stage capture in the deal row, with auto-fill from the dialer webhook payload.
 - **Success:** Time-to-log down from 4m 18s median to under 90s, lifting weekly deal-stage update completeness from 32% to 38% within 8 weeks of launch.]
 
+## LLM Context — working memory (not part of the spec)
+
+<!-- Pin this high (a collapsed Notion toggle is ideal) so it's recalled on every edit. The PRD's durable memory for AI-assisted editing: read before editing, append whenever a decision/convention/constraint is set. NOT product scope — never a substitute for the must-haves below. -->
+
+> Maintained for AI assistants and human editors as this PRD's durable memory. Records the decisions, conventions, and gotchas that explain the body but don't belong in it — so future edits recall them instead of re-litigating. Keep entries dated and terse.
+
+**Locked decisions** *(newest first; don't silently reverse — log the reversal here)*
+- `[YYYY-MM-DD]` — [decision + one-line why].
+
+**Standing conventions** *(rules every section / variant must honour)*
+- [e.g. "Pro and Enterprise only — never a Free-plan surface."]
+
+**Known gaps & gotchas** *(traps a future editor or build will hit)*
+- [e.g. "Warehouse `deal_stage_logged` lags ~15 min — don't trust it for real-time reads."]
+
+**Open threads** *(parked, not yet decided — promote into the body once resolved)*
+- [ ] [question — owner].
+
 ## Problem
 
 [2–4 paragraphs. What is broken, for whom, with evidence inline. Cite the source — interview, warehouse query, ticket count — for every claim. Real problems describe user pain or business gap, never the proposed fix.]

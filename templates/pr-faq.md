@@ -11,6 +11,24 @@ Reader: exec, cross-functional leadership. Decision it unblocks: whether the ide
 Truth-seeking, not selling. The Internal FAQ must include the uncomfortable questions — if every internal FAQ answer reads like a sales pitch, the doc has failed.
 -->
 
+## LLM Context — working memory (not part of the spec)
+
+<!-- Keep this as a COLLAPSED Notion toggle pinned above the Press Release so it never eats into the single-page PR. The doc's durable memory for AI-assisted editing: read before editing, append whenever a decision/convention/constraint is set. NOT customer-facing — never leaks into the Press Release or External FAQ. -->
+
+> Maintained for AI assistants and human editors as this PR-FAQ's durable memory. Records the decisions, conventions, and gotchas that explain the body but don't belong in it — so future edits recall them instead of re-litigating. Keep entries dated and terse.
+
+**Locked decisions** *(newest first; don't silently reverse — log the reversal here)*
+- `[YYYY-MM-DD]` — [decision + one-line why].
+
+**Standing conventions** *(rules every revision must honour)*
+- [e.g. "Press release stays one page — overflow goes to the External FAQ."]
+
+**Known gaps & gotchas** *(traps a future editor will hit)*
+- [e.g. "Competitive scan is Aug 2025 — refresh before any exec review."]
+
+**Open threads** *(parked, not yet decided — promote into the body once resolved)*
+- [ ] [question — owner].
+
 ## Press Release
 
 > guidance: this section in the final draft must fit on a single page. If it doesn't, cut. The press release is dated to a hypothetical launch — write as if the product already exists and shipped today.

@@ -22,6 +22,24 @@ The PM may co-author with the tech lead. Voice is engineering-decision register:
 - **Recommendation:** Migrate authentication from Cognito to Clerk via a phased 4-week cutover, dual-running both providers during weeks 2–3.
 - **Tradeoff:** Accepts ~6 weeks of engineering capacity and one breaking change for existing API clients, in exchange for ~70% reduction in auth-related support load and unblocking SOC 2 evidence collection.]
 
+## LLM Context — working memory (not part of the spec)
+
+<!-- Pin this high (a collapsed Notion toggle is ideal) so it's recalled on every edit. The RFC's durable memory for AI-assisted editing: read before editing, append whenever a decision/constraint is set. NOT part of the technical proposal below. -->
+
+> Maintained for AI assistants and human editors as this RFC's durable memory. Records the decisions, conventions, and gotchas that explain the body but don't belong in it — so future edits recall them instead of re-litigating. Keep entries dated and terse.
+
+**Locked decisions** *(newest first; don't silently reverse — log the reversal here)*
+- `[YYYY-MM-DD]` — [decision + one-line why, e.g. "Chose Option B over A — A needs a write-lock window we can't take."].
+
+**Standing conventions** *(invariants every option / migration step must honour)*
+- [e.g. "No breaking changes to the public API contract — additive only."]
+
+**Known gaps & gotchas** *(traps a future editor or implementer will hit)*
+- [e.g. "Staging mirrors prod schema but not prod data volume — load-test reads don't transfer."]
+
+**Open threads** *(parked, not yet decided — promote into the body once resolved)*
+- [ ] [question — owner].
+
 ## Problem / context
 
 [2–3 paragraphs. What we're trying to solve at the engineering level. Where the current system falls short. Cite the evidence — incidents, latency, support tickets, scaling limits.]

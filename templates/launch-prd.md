@@ -25,6 +25,24 @@ Aakash Gupta's frame — "the modern PRD reads like a blog post but contains all
 - **Launch headline:** "Update 500 SKUs in 90 seconds — bulk-edit lands in the catalog grid 15 July."
 - **Success:** Time-to-update p50 under 90s by launch + 30 days; weekly catalog-update completion up 4+ points by launch + 60 days.]
 
+## LLM Context — working memory (not part of the spec)
+
+<!-- Pin this high (a collapsed Notion toggle is ideal) so it's recalled on every edit. The PRD's durable memory for AI-assisted editing: read before editing, append whenever a decision/convention/constraint is set. NOT product scope — never a substitute for the launch content below. -->
+
+> Maintained for AI assistants and human editors as this launch plan's durable memory. Records the decisions, conventions, and gotchas that explain the body but don't belong in it — so future edits recall them instead of re-litigating. Keep entries dated and terse.
+
+**Locked decisions** *(newest first; don't silently reverse — log the reversal here)*
+- `[YYYY-MM-DD]` — [decision + one-line why].
+
+**Standing conventions** *(rules every channel / variant / asset must honour)*
+- [e.g. "All GTM assets use the approved launch headline verbatim — no paraphrase."]
+
+**Known gaps & gotchas** *(traps a future editor or build will hit)*
+- [e.g. "Rollback flag toggles per-region, not globally — stage the rollback by region."]
+
+**Open threads** *(parked, not yet decided — promote into the body once resolved)*
+- [ ] [question — owner].
+
 ## Problem
 
 [2–4 paragraphs. What is broken, for whom, with evidence inline. Cite the source for every claim.]

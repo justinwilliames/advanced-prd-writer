@@ -16,6 +16,24 @@ The heart of this doc is the "What we'd need to believe to invest" section. Do n
 
 [One sentence + recommendation. E.g. "Failed-payment recovery is currently 14% vs a benchmark 35%; staffing a 6-week dunning rebuild would recover ~$180K ARR annually. Recommendation: staff in Q3."]
 
+## LLM Context — working memory (not part of the spec)
+
+<!-- Pin this high (a collapsed Notion toggle is ideal) so it's recalled on every edit. The assessment's durable memory for AI-assisted editing: read before editing, append whenever a decision/constraint is set. NOT part of the assessment content below. Carries forward if this becomes a Standard PRD. -->
+
+> Maintained for AI assistants and human editors as this assessment's durable memory. Records the decisions, conventions, and gotchas that explain the body but don't belong in it — so future edits recall them instead of re-litigating. Keep entries dated and terse.
+
+**Locked decisions** *(newest first; don't silently reverse — log the reversal here)*
+- `[YYYY-MM-DD]` — [decision + one-line why].
+
+**Standing conventions** *(rules every later iteration must honour)*
+- [e.g. "Scope is recovery only — acquisition lift is explicitly out, see Non-goals."]
+
+**Known gaps & gotchas** *(traps a future editor or build will hit)*
+- [e.g. "Stripe benchmark is 2025 — refresh before quoting in the go/no-go review."]
+
+**Open threads** *(parked, not yet decided — promote into the body once resolved)*
+- [ ] [question — owner].
+
 ## Problem statement
 
 [2–4 sentences. What is broken, for whom, with evidence. The problem is real — that's why we're past discovery. State it as a fact with the source named.]
